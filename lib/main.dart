@@ -18,19 +18,14 @@ class VisibleDatesDetails extends StatelessWidget {
 
 class CalendarPickerIntegration extends StatefulWidget {
   @override
-  CalendarPickerIntegrationState createState() => CalendarPickerIntegrationState();
+  CalendarPickerIntegrationState createState() =>
+      CalendarPickerIntegrationState();
 }
 
 class CalendarPickerIntegrationState extends State<CalendarPickerIntegration> {
-    CalendarController _calendarController;
-    DateRangePickerController _dateRangePickerController;
-
-    @override
-    void initState() {
-      _calendarController = CalendarController();
-      _dateRangePickerController = DateRangePickerController();
-      super.initState();
-    }
+  final CalendarController _calendarController = CalendarController();
+  final DateRangePickerController _dateRangePickerController =
+      DateRangePickerController();
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +62,7 @@ class CalendarPickerIntegrationState extends State<CalendarPickerIntegration> {
   }
 
   void selectionChanged(DateRangePickerSelectionChangedArgs args) {
-    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+    SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
       _calendarController.displayDate = args.value;
     });
   }
@@ -76,14 +71,14 @@ class CalendarPickerIntegrationState extends State<CalendarPickerIntegration> {
     List<Appointment> appointments = <Appointment>[];
     DateTime today = DateTime.now();
     appointments.add(Appointment(
-      startTime:DateTime(today.year,today.month,today.day,9,0,0),
-      endTime: DateTime(today.year,today.month,today.day,10,0,0),
+      startTime: DateTime(today.year, today.month, today.day, 9, 0, 0),
+      endTime: DateTime(today.year, today.month, today.day, 10, 0, 0),
       subject: 'Meeting',
       color: Colors.pinkAccent,
     ));
     appointments.add(Appointment(
-      startTime:DateTime(today.year,today.month,today.day+1,9,0,0),
-      endTime: DateTime(today.year,today.month,today.day+1,10,0,0),
+      startTime: DateTime(today.year, today.month, today.day + 1, 9, 0, 0),
+      endTime: DateTime(today.year, today.month, today.day + 1, 10, 0, 0),
       subject: 'Retrospective',
       color: Colors.blue,
     ));
@@ -92,11 +87,11 @@ class CalendarPickerIntegrationState extends State<CalendarPickerIntegration> {
   }
 
   void viewChanged(ViewChangedDetails viewChangedDetails) {
-    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+    SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
       _dateRangePickerController.selectedDate =
-      viewChangedDetails.visibleDates[0];
+          viewChangedDetails.visibleDates[0];
       _dateRangePickerController.displayDate =
-      viewChangedDetails.visibleDates[0];
+          viewChangedDetails.visibleDates[0];
     });
   }
 }
