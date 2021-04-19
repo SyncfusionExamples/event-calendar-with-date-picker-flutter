@@ -23,8 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  syncfusion_flutter_calendar: ^19.1.55
-  syncfusion_flutter_datepicker: ^19.1.55-beta
+  syncfusion_flutter_calendar: ^19.1.56
+  syncfusion_flutter_datepicker: ^19.1.56-beta
 
 
   # The following adds the Cupertino Icons font to your application.
