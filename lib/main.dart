@@ -4,12 +4,14 @@ import 'package:flutter/widgets.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-void main() => runApp(CalendarPickerIntegration());
+void main() => runApp(const CalendarPickerIntegration());
 
 class VisibleDatesDetails extends StatelessWidget {
+  const VisibleDatesDetails({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: CalendarPickerIntegration(),
     );
@@ -17,6 +19,8 @@ class VisibleDatesDetails extends StatelessWidget {
 }
 
 class CalendarPickerIntegration extends StatefulWidget {
+  const CalendarPickerIntegration({super.key});
+
   @override
   CalendarPickerIntegrationState createState() =>
       CalendarPickerIntegrationState();
@@ -25,7 +29,7 @@ class CalendarPickerIntegration extends StatefulWidget {
 class CalendarPickerIntegrationState extends State<CalendarPickerIntegration> {
   final CalendarController _calendarController = CalendarController();
   final DateRangePickerController _dateRangePickerController =
-      DateRangePickerController();
+  DateRangePickerController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,7 @@ class CalendarPickerIntegrationState extends State<CalendarPickerIntegration> {
                     controller: _dateRangePickerController,
                     showNavigationArrow: true,
                     allowViewNavigation: false,
-                    monthViewSettings: DateRangePickerMonthViewSettings(
+                    monthViewSettings: const DateRangePickerMonthViewSettings(
                         numberOfWeeksInView: 1),
                     onSelectionChanged: selectionChanged,
                   ),
@@ -89,9 +93,9 @@ class CalendarPickerIntegrationState extends State<CalendarPickerIntegration> {
   void viewChanged(ViewChangedDetails viewChangedDetails) {
     SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
       _dateRangePickerController.selectedDate =
-          viewChangedDetails.visibleDates[0];
+      viewChangedDetails.visibleDates[0];
       _dateRangePickerController.displayDate =
-          viewChangedDetails.visibleDates[0];
+      viewChangedDetails.visibleDates[0];
     });
   }
 }
